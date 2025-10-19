@@ -7,7 +7,7 @@ class OutputHandler {
   }
 
   printError(message) {
-    MissionUtils.Console.print(`${MESSAGES.ERROR_PREFIX}${message}`);
+    MissionUtils.Console.print(message);
   }
 }
 

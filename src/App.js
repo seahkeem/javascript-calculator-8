@@ -28,6 +28,8 @@ class App {
       
     } catch (error) {
       this.#outputHandler.printError(error.message);
+
+      throw error;
     }
   }
 }

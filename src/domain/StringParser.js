@@ -18,7 +18,7 @@ class StringParser {
   #parseCustomDelimiter(inputString) {
     const newlineIndex = inputString.indexOf(this.#CUSTOM_DELIMITER_SUFFIX);
     if (newlineIndex === -1) {
-      throw new Error(MESSAGES.ERROR_INCOMPLETE_DECLARATION);
+      throw new Error(`${MESSAGES.ERROR_PREFIX}${MESSAGES.ERROR_INCOMPLETE_DECLARATION}`);
     }
 
     const delimiter = inputString.substring(
@@ -45,7 +45,7 @@ class StringParser {
     const isNotDecimal = delimiter !== '.';
 
     if (!(isLengthOne && isNotSpace && isNotNumber && isNotDecimal)) {
-      throw new Error(MESSAGES.ERROR_INVALID_DELIMITER);
+      throw new Error(`${MESSAGES.ERROR_PREFIX}${MESSAGES.ERROR_INVALID_DELIMITER}`);
     }
   }
 }
