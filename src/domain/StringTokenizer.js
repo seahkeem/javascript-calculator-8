@@ -2,14 +2,7 @@ class StringTokenizer {
   tokenize(numbersString, delimiters) {
     const delimiterRegex = this.#createDelimiterRegex(delimiters);
     const tokens = numbersString.split(delimiterRegex);
-    const numbers = tokens.map((token) => {
-      if (token.trim() === '') {
-        return 0;
-      }
-      return Number(token);
-    });
-
-    return numbers;
+    return tokens;
   }
 
   #createDelimiterRegex(delimiters) {

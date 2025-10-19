@@ -2,12 +2,14 @@ import InputHandler from './io/InputHandler.js';
 import OutputHandler from './io/OutputHandler.js';
 import StringParser from './domain/StringParser.js';
 import StringTokenizer from './domain/StringTokenizer.js';
+import Calculator from './domain/Calculator.js';
 
 class App {
   #inputHandler = new InputHandler();
   #outputHandler = new OutputHandler();
   #stringParser = new StringParser();
   #stringTokenizer = new StringTokenizer();
+  #calculator = new Calculator();
 
   async run() {
     try {
@@ -19,7 +21,9 @@ class App {
       }
 
       const { delimiters, numbersString } = this.#stringParser.parse(inputString);
-      const numbers = this.#stringTokenizer.tokenize(numbersString, delimiters);
+      const tokens = this.#stringTokenizer.tokenize(numbersString, delimiters); // 👈 string[] 반환
+      const numbers = this.#calculator.validateAndParseNumbers(tokens);
+
       console.log('[numbers]', numbers);
       
     } catch (error) {
