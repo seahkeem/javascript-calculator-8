@@ -21,10 +21,10 @@ class App {
       }
 
       const { delimiters, numbersString } = this.#stringParser.parse(inputString);
-      const tokens = this.#stringTokenizer.tokenize(numbersString, delimiters); // 👈 string[] 반환
+      const tokens = this.#stringTokenizer.tokenize(numbersString, delimiters);
       const numbers = this.#calculator.validateAndParseNumbers(tokens);
-
-      console.log('[numbers]', numbers);
+      const result = this.#calculator.sum(numbers);
+      this.#outputHandler.printResult(result);
       
     } catch (error) {
       this.#outputHandler.printError(error.message);
