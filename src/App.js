@@ -1,11 +1,13 @@
 import InputHandler from './io/InputHandler.js';
-import OutputHandler from './io/OutputHandler.js'; 
+import OutputHandler from './io/OutputHandler.js';
 import StringParser from './domain/StringParser.js';
+import StringTokenizer from './domain/StringTokenizer.js';
 
 class App {
   #inputHandler = new InputHandler();
   #outputHandler = new OutputHandler();
   #stringParser = new StringParser();
+  #stringTokenizer = new StringTokenizer();
 
   async run() {
     try {
@@ -17,10 +19,9 @@ class App {
       }
 
       const { delimiters, numbersString } = this.#stringParser.parse(inputString);
-
-      console.log('[delimiters]', delimiters);
-      console.log('[numbersString]', numbersString);
-
+      const numbers = this.#stringTokenizer.tokenize(numbersString, delimiters);
+      console.log('[numbers]', numbers);
+      
     } catch (error) {
       this.#outputHandler.printError(error.message);
     }
